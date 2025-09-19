@@ -6,8 +6,16 @@ on:
       greeeting:                      # 入力パラメータ名
         type: string                  # 型定義
         default: Hello
-        required: true                # 入力パラメータの必須フラグ
+        required: false                # 入力パラメータの必須フラグ
         description: A cheerful word # 入力パラメータの概要
+      log-level:                         # 入力パラメータ名
+        type: choice                  # 型定義(列挙型)
+        options:                      # 入力可能な入力値定義
+          - info
+          - warn
+          - error
+        required: false                # 入力パラメータの必須フラグ
+        description: A cheerful word   # 入力パラメータの概要
 jobs: # ジョブの定義（ワークフローの実行単位）　ジョブも複数定義できる
   hello:                          # ジョブID
     runs-on: ubuntu-latest         # ランナー　Ubuntuで実行 (GitHubが用意してくれているVM環境で実行することができる)
