@@ -4,5 +4,5 @@ jobs:                             # ジョブの定義（ワークフローの�
   hello:                          # ジョブID
     runs-on: ubuntu-latest         # ランナー　Ubuntuで実行 (GitHubが用意してくれているVM環境で実行することができる)
     steps:                        # ワークフローに置ける最小単位
-    - run: echo "Hello, world"  # runsキーは シェルコマンド実行
+      - run: echo "Hello, world"  # runsキーは シェルコマンド実行
       - uses: actions/checkout@v4 # usesは アクションの呼びだし(Githubが用意している組み込み関数っぽいやつ)
