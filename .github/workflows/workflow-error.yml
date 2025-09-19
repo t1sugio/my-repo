@@ -1,8 +1,8 @@
-name: Hello                       # ワークフロー名
+name: failedHello                       # ワークフロー名
 on: push                          # イベント名（プッシュ時に起動）配列のように書けば、[push, pull_request]のように複数指定できる
 jobs:                             # ジョブの定義（ワークフローの実行単位）　ジョブも複数定義できる
   hello:                          # ジョブID
-    run-on: ubuntu-latest        # ランナー　Ubuntuで実行 (GitHubが用意してくれているVM環境で実行することができる)
+    runs-on: ubuntu-latest         # ランナー　Ubuntuで実行 (GitHubが用意してくれているVM環境で実行することができる)
     steps:                        # ワークフローに置ける最小単位
-      - run: echo "Hello, world"  # runsキーは シェルコマンド実行
+    - run: echo "Hello, world"  # runsキーは シェルコマンド実行
       - uses: actions/checkout@v4 # usesは アクションの呼びだし(Githubが用意している組み込み関数っぽいやつ)
