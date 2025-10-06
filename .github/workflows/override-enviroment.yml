@@ -1,0 +1,21 @@
+# 環境変数の設定
+# ワークフロー・ジョブ・ステップの各レベルで定義が可能
+name: Override environment
+on: push
+env:                                   # ワークフローレベルで環境変数を定義
+  EXAMPLE: Defined by workflow level
+jobs:
+  print:
+    runs-on: ubuntu-latest             # ランナー　Ubuntuで実行 (GitHubが用意してくれているVM環境で実行することができる)
+    steps:                             # ワークフローに置ける最小単位
+      - run: echo "${EXAMPLE}"         # ワークフローレベルの環境変数を出力
+      - run: echo "${GITHUB_ACTOR}"         # デフォルトで用意されている環境変数
+      - env:
+          EXAMPLE: Defined by step level # ステップのレベルでオーバーライドする
+        run: echo "${EXAMPLE}"        # オーバーライドされた環境変数を標準出力
+
+
+# 環境変数のオーバーライド
+## 環境変数はオーバーライドすることができる
+### 優先されるのはスコープが狭いもの　
+### →　
