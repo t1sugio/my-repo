@@ -1,6 +1,6 @@
 # 環境変数の設定
 # ワークフロー・ジョブ・ステップの各レベルで定義が可能
-name: Environment variables            # ワークフロー名
+name: Environment                         # ワークフロー名
 on: push
 jobs: # ジョブの定義（ワークフローの実行単位）　ジョブも複数定義できる
   run:
@@ -8,7 +8,16 @@ jobs: # ジョブの定義（ワークフローの実行単位）　ジョブも
     env:
       BRANCH: main                     # Jobのレベルで環境変数を定義する
     steps:                             # ワークフローに置ける最小単位
-      - run: echo "${{BRANCH}}"        # シェルコマンドからジョブレベルの環境変数を参照
+      - run: echo "${BRANCH}"        # シェルコマンドからジョブレベルの環境変数を参照
       - uses: actions/checkout@v4
         with:
           ref: ${{ env.BRANCH }}       # envのコンテキスト（オブジェクト）経由でジョブレベルの環境変数を参照
+
+
+# 環境変数の参照
+##  ${...} で囲うと、変数の境界が明確になります。
+##  隣接する文字列や記号と区別したいときに便利。
+### EX)
+#  BRANCH="main"
+#  echo "$BRANCH_suffix"     # => （BRANCH_suffixという変数を探す）→ 未定義なら空
+#  echo "${BRANCH}_suffix"   # => main_suffix
