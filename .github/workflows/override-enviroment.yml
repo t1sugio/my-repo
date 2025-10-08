@@ -7,9 +7,12 @@ env:                                   # ワークフローレベルで環境変
 jobs:
   print:
     runs-on: ubuntu-latest             # ランナー　Ubuntuで実行 (GitHubが用意してくれているVM環境で実行することができる)
+    env:
+      ACTOR: ${{ github.actor }}       # 中間環境変数を用意する（コンテキストを直接、シェルコマンドに埋め込まないようにする）
     steps:                             # ワークフローに置ける最小単位
       - run: echo "${EXAMPLE}"         # ワークフローレベルの環境変数を出力
-      - run: echo "${GITHUB_ACTOR}"         # デフォルトで用意されている環境変数
+      - run: echo "${GITHUB_ACTOR}"    # デフォルトで用意されている環境変数
+      - run: echo "${ACTOR}"           # 環境変数経由でコンテキストのプロパティを参照する（推奨方法）
       - env:
           EXAMPLE: Defined by step level # ステップのレベルでオーバーライドする
         run: echo "${EXAMPLE}"        # オーバーライドされた環境変数を標準出力
