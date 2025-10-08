@@ -1,0 +1,15 @@
+# variablesの設定
+## Github上でvariablesを設定
+## 複数のワークフロー間で同じ値を使用することができるようになる
+## ※コマンドラインでも実行可能 gh variable set USERNAME --body 'ocotcat'
+name: Variables
+on: push
+env:                                   # ワークフローレベルで環境変数を定義
+  EXAMPLE: Defined by workflow level
+jobs:
+  print:
+    runs-on: ubuntu-latest             # ランナー　Ubuntuで実行 (GitHubが用意してくれているVM環境で実行することができる)
+    env:
+      USERNAME: ${{ vars.USERNAME }}   # variablesから値を環境変数に設定
+    steps:                             # ワークフローに置ける最小単位
+      - run: echo "${USERNAME}"
