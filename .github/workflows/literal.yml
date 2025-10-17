@@ -7,13 +7,13 @@ name: Variables
 on: push
 jobs:
   print:
-    runs-on: ubuntu-latest             # ランナー　Ubuntuで実行 (GitHubが用意してくれているVM環境で実行することができる)
-    steps:                             # ワークフローに置ける最小単位
-      - run: printenv | grep 'LITERAL_'
+    runs-on: ubuntu-latest                # ランナー　Ubuntuで実行 (GitHubが用意してくれているVM環境で実行することができる)
+    steps:                                # ワークフローに置ける最小単位
+      - run: printenv | grep 'LITERAL_'   # 全ての環境変数を出力
         env:
           LITERAL_NULL: ${{ null }}
           LITERAL_BOOLEAN: ${{ true }}
           LITERAL_NUMBER: ${{ 10040 }}
           LITERAL_STRING: ${{ 'aiueo' }}
           LITERAL_OMIT_STRING: 'HELLO'
-          LITERAL_OBJECT_FILTER: ${{ github.event.*.html_url}}
+          LITERAL_OBJECT_FILTER: ${{ github.event.*.html_url }}
