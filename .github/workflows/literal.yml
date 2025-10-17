@@ -3,7 +3,7 @@
 ## boolean
 ## number
 ## string
-name: Variables
+name: Literal
 on: push
 jobs:
   print:
