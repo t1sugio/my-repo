@@ -16,4 +16,3 @@ jobs:
           LITERAL_NUMBER: ${{ 10040 }}
           LITERAL_STRING: ${{ 'aiueo' }}
           LITERAL_OMIT_STRING: 'HELLO'
-          LITERAL_OBJECT_FILTER: ${{ github.event.*.html_url }}
