@@ -3,7 +3,7 @@
 ## 文字列を生成する関数  format(), join()
 ## JSON操作する関数     toJson(), fromJson
 ## hash値を生成する関数　hashFiles()
-name: Generate functions
+name: JSON functions
 on: push
 jobs:
   print:
