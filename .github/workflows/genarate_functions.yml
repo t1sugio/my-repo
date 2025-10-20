@@ -1,0 +1,15 @@
+# 文字列生成をする関数のテスト
+# 文字列を比較する関数  contains(), startsWith(), endsWith()
+## 文字列を生成する関数  format(), join()
+## JSON操作する関数     toJson(), fromJson
+## hash値を生成する関数　hashFiles()
+name: Generate functions
+on: push
+jobs:
+  print:
+    runs-on: ubuntu-latest                # ランナー　Ubuntuで実行 (GitHubが用意してくれているVM環境で実行することができる)
+    steps:                                # ワークフローに置ける最小単位
+      - run: printenv | grep '_FUNC'   # 全ての環境変数を出力
+        env:
+          FORMAT_FUNC: ${{ format('{0}, {1}.', 'Hi', 'world') }}     #フォーマット第一引数の文字列に含まれる　{Number}の数分第二引数移行の文字列で置き換えられる
+          JOIN_FUNC: ${{ join(github.event.*.html_url, ', ') }}      #カンマで結合
