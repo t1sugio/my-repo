@@ -1,0 +1,17 @@
+# 関数を利用することができる
+# 文字列を比較する関数  contains(), startsWith(), endsWith()
+## 文字列を生成する関数  format(), join()
+## JSON操作する関数     toJson(), fromJson
+## hash値を生成する関数　hashFiles()
+name: Compare functions
+on: push
+jobs:
+  print:
+    runs-on: ubuntu-latest                # ランナー　Ubuntuで実行 (GitHubが用意してくれているVM環境で実行することができる)
+    steps:                                # ワークフローに置ける最小単位
+      - run: printenv | grep '_FUNC'   # 全ての環境変数を出力
+        env:
+          CONTAINS_FUNC: ${{ contains('Hello', 'ell') }}     #ellを含むのかをチェック
+          CONTAINS_ARRAY_FUNC: ${{ contains(github.event.issue.label.*.name, 'bug') }}   # 配列にbugを含むのかをチェックできる
+          STARTS_WITH_FUNC: ${{ startsWith('Hello', 'He') }} #Heで始まるのかをチェック
+          ENDS_WITH_FUNC: ${{ endsWith('Hello', 'lo') }}     #loで終わるのかをチェック
