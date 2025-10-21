@@ -1,0 +1,12 @@
+# 名前を付ける
+## ワークフロー名だけでなく、ステップ名やジョブ名も付けることができる
+
+name: Status check functions
+on: push
+jobs:
+  print:                                  # printはあくまでもjobId 複数定義できるので、各ジョブを区別できるようにするもの
+    name: Super Useful Job                # printというjobに対して名前を付けることができる
+    runs-on: ubuntu-latest                # ランナー　Ubuntuで実行 (GitHubが用意してくれているVM環境で実行することができる)
+    steps:                                # ワークフローに置ける最小単位
+      - name: Amazing Script              # ステップ名の指定
+        run: echo "Hello"                 # Helloを出
