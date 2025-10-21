@@ -1,7 +1,7 @@
 # 名前を付ける
 ## ワークフロー名だけでなく、ステップ名やジョブ名も付けることができる
 
-name: Status check functions
+name: name functions
 on: push
 jobs:
   print:                                  # printはあくまでもjobId 複数定義できるので、各ジョブを区別できるようにするもの
