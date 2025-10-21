@@ -1,0 +1,10 @@
+# 条件分岐の設定することができる
+# IFが使用できるのはjobとstepの単位で使用することができる
+name: Conditions
+on: push
+jobs:
+  skip-or-run:
+    runs-on: ubuntu-latest                # ランナー　Ubuntuで実行 (GitHubが用意してくれているVM環境で実行することができる)
+    steps:                                # ワークフローに置ける最小単位
+      - run: echo "Hello"                 # Helloを出力
+        if: ${{ contains(github.run_id, '1') }} # ワークフロー実行IDで分岐
