@@ -1,0 +1,16 @@
+# 条件分岐の設定することができる
+## ステータスチェック関数を使うことができれば、失敗時はこうするとかそういう制御ができる
+###
+# - succsess(): 手前の処理が成功していればTrue
+# - failure():  手前の処理が失敗したらTrue
+# - cancelled(): 手前の処理がキャンセルされたらtrue
+# - always:     手前の処理結果を問わず常にtrue
+name: Status check functions
+on: push
+jobs:
+  skip-or-run:
+    runs-on: ubuntu-latest                # ランナー　Ubuntuで実行 (GitHubが用意してくれているVM環境で実行することができる)
+    steps:                                # ワークフローに置ける最小単位
+      - run: exit 1                        # 終了ステータスがゼロ以外で、エラーが発生する（一つ目の）
+      - run: echo "Hello"                 # Helloを出力
+        if: ${{ failure() }}              # 失敗時にTrue
