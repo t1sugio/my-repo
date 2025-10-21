@@ -1,0 +1,10 @@
+# 特定のユーザのときのみ実行するワークフローを定義する
+# ジョブを実行する前にチェックすることができる
+name: Conditions workflow
+on: push
+jobs:
+  skip-or-run:
+    if: ${{ github.actor == 'ocotocat'}}
+    runs-on: ubuntu-latest                # ランナー　Ubuntuで実行 (GitHubが用意してくれているVM環境で実行することができる)
+    steps:                                # ワークフローに置ける最小単位
+      - run: echo "Hello"                 # Helloを出力
